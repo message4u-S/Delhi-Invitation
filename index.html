@@ -218,7 +218,9 @@ body {
   transform: translateY(0);
 }
 
-/* CARD */
+/* =========================
+   CARD
+========================= */
 
 .card {
   max-width: 650px;
@@ -239,6 +241,19 @@ body {
   padding: 38px 25px;
 
   position: relative;
+
+  /* Card comes forward from envelope */
+  opacity: 0;
+  transform: translateY(90px) scale(.92);
+
+  transition:
+    opacity 1s ease,
+    transform 1.15s cubic-bezier(.22,1,.36,1);
+}
+
+.invitation.show .card {
+  opacity: 1;
+  transform: translateY(0) scale(1);
 }
 
 /* Decorative rose border */
@@ -270,6 +285,23 @@ body {
 .card-content {
   position: relative;
   z-index: 2;
+}
+
+/* =========================
+   SECTION REVEAL
+========================= */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity .75s ease,
+    transform .75s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Headings */
@@ -464,6 +496,53 @@ li::marker {
   border-left: 3px solid #a54b59;
 }
 
+/* =========================
+   TERMS & CONDITIONS
+========================= */
+
+.terms {
+  margin-top: 30px;
+
+  padding: 20px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff4f1,
+      #f9e7e5
+    );
+
+  border: 1px solid #dfb9bc;
+
+  border-radius: 4px;
+
+  line-height: 1.8;
+
+  font-size: 14px;
+}
+
+.terms-title {
+  text-align: center;
+
+  letter-spacing: 2px;
+
+  color: #873f4a;
+
+  font-size: 14px;
+
+  margin-bottom: 14px;
+}
+
+.terms ul {
+  margin: 0;
+
+  padding-left: 20px;
+
+  font-size: 13.5px;
+
+  line-height: 1.9;
+}
+
 /* FINAL */
 
 .final {
@@ -498,6 +577,50 @@ li::marker {
   color: #813d48;
 
   font-size: 17px;
+}
+
+/* =========================
+   SUBTLE ROSE PETALS
+========================= */
+
+.petal {
+  position: fixed;
+
+  top: -30px;
+
+  z-index: 50;
+
+  pointer-events: none;
+
+  color: #b56b75;
+
+  opacity: .18;
+
+  font-size: 14px;
+
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+
+  0% {
+    transform:
+      translateY(-20px)
+      rotate(0deg);
+    opacity: 0;
+  }
+
+  15% {
+    opacity: .22;
+  }
+
+  100% {
+    transform:
+      translateY(110vh)
+      translateX(70px)
+      rotate(260deg);
+    opacity: 0;
+  }
 }
 
 /* MOBILE */
@@ -579,34 +702,38 @@ li::marker {
 
     <div class="card-content">
 
-      <div class="ornament">
+      <div class="ornament reveal">
         ✦
       </div>
 
-      <h1>
+      <h1 class="reveal">
         AN INVITATION
       </h1>
 
-      <div class="greeting">
+      <div class="greeting reveal">
         My dear Shweta,
       </div>
 
-      <p>
-        It is my pleasure to formally invite you
-        to our much-awaited
-        <strong>Delhi Meeting.</strong>
-      </p>
+      <div class="reveal">
 
-      <p>
-        As the 29th approaches,
-I’m looking forward to sharing a little time with you in Delhi—
-quietly, comfortably, and without any expectations.
-      </p>
+        <p>
+          It is my pleasure to formally invite you
+          to our much-awaited
+          <strong>Delhi Meeting.</strong>
+        </p>
+
+        <p>
+          As the 29th approaches,
+          I’m looking forward to sharing a little time with you in Delhi—
+          quietly, comfortably, and without any expectations.
+        </p>
+
+      </div>
 
 
       <!-- DETAILS -->
 
-      <div class="details">
+      <div class="details reveal">
 
         <div>
           <strong>DATE:</strong> 29th
@@ -635,43 +762,47 @@ quietly, comfortably, and without any expectations.
 
       <!-- AGENDA -->
 
-      <div class="section-title">
-        AGENDA FOR THE DAY
+      <div class="reveal">
+
+        <div class="section-title">
+          AGENDA FOR THE DAY
+        </div>
+
+        <ul>
+
+          <li>
+            Leave the stress behind
+          </li>
+
+          <li>
+            Take a little break from everything
+          </li>
+
+          <li>
+            Have some good conversations
+          </li>
+
+          <li>
+            Share a few laughs
+          </li>
+
+          <li>
+            Enjoy some of your favourite food and drinks
+          </li>
+
+          <li>
+            And, most importantly,
+            spend some peaceful time together
+          </li>
+
+        </ul>
+
       </div>
-
-      <ul>
-
-        <li>
-          Leave the stress behind
-        </li>
-
-        <li>
-          Take a little break from everything
-        </li>
-
-        <li>
-          Have some good conversations
-        </li>
-
-        <li>
-          Share a few laughs
-        </li>
-
-        <li>
-          Enjoy some of your favourite food and drinks
-        </li>
-
-        <li>
-          And, most importantly,
-          spend some peaceful time together
-        </li>
-
-      </ul>
 
 
       <!-- APOLOGY -->
 
-      <div class="apology">
+      <div class="apology reveal">
 
         <strong>A SINCERE APOLOGY</strong>
 
@@ -702,109 +833,168 @@ quietly, comfortably, and without any expectations.
 
       <!-- FOOD -->
 
-      <div class="section-title">
-        A LITTLE FOOD & COFFEE
-      </div>
+      <div class="reveal">
 
-      <div class="food">
-
-        <div class="food-title">
-          YOUR FAVOURITES HAVE BEEN NOTED
+        <div class="section-title">
+          A LITTLE FOOD &amp; COFFEE
         </div>
 
-        <br>
+        <div class="food">
 
-        🌶️ <strong>Chilli Potato</strong>
+          <div class="food-title">
+            YOUR FAVOURITES HAVE BEEN NOTED
+          </div>
 
-        <br>
+          <br>
 
-        ☕ <strong>McDonald's Cold Coffee</strong>
+          🌶️ <strong>Chilli Potato</strong>
 
-        <br>
+          <br>
 
-        🍕 <strong>Pizza</strong>
+          ☕ <strong>McDonald's Cold Coffee</strong>
 
-        <br>
+          <br>
 
-        🥪 <strong>Subway</strong>
+          🍕 <strong>Pizza</strong>
 
-        <br><br>
+          <br>
 
-        And, of course,
-        <strong>anything else you feel like having.</strong>
+          🥪 <strong>Subway</strong>
 
-        <br><br>
+          <br><br>
 
-        The menu is flexible.
-        Your comfort comes first.
+          And, of course,
+          <strong>anything else you feel like having.</strong>
+
+          <br><br>
+
+          The menu is flexible.
+          Your comfort comes first.
+
+        </div>
 
       </div>
 
 
       <!-- NO PRESSURE -->
 
-      <p>
+      <div class="reveal">
 
-        There are
-        <strong>no expectations and no pressure</strong>
-        attached to this invitation.
+        <p>
 
-        Just a sincere request to take a little time out
-        and make this day a pleasant one.
+          There are
+          <strong>no expectations and no pressure</strong>
+          attached to this invitation.
 
-      </p>
+          Just a sincere request to take a little time out
+          and make this day a pleasant one.
+
+        </p>
+
+      </div>
 
 
       <!-- PICKUP -->
 
-      <div class="section-title">
-        ARRIVAL &amp; PICK-UP
+      <div class="reveal">
+
+        <div class="section-title">
+          ARRIVAL &amp; PICK-UP
+        </div>
+
+        <div class="pickup">
+
+          For your convenience,
+          <strong>I will personally come to receive you.</strong>
+
+          <br><br>
+
+          You may choose
+          <strong>Mandi House Metro Station</strong>,
+
+          or, if you prefer,
+
+          <strong>Nawada Metro Station</strong>,
+          being closer to your residence.
+
+          <br><br>
+
+          <strong>
+            The choice of arrival point is entirely yours.
+          </strong>
+
+          Just let me know which would be
+          more convenient for you.
+
+        </div>
+
       </div>
 
-      <div class="pickup">
 
-        For your convenience,
-        <strong>I will personally come to receive you.</strong>
+      <!-- TERMS & CONDITIONS -->
 
-        <br><br>
+      <div class="terms reveal">
 
-        You may choose
-        <strong>Mandi House Metro Station</strong>,
+        <div class="terms-title">
+          TERMS &amp; CONDITIONS
+        </div>
 
-        or, if you prefer,
+        <ul>
 
-        <strong>Nawada Metro Station</strong>,
-        being closer to your residence.
+          <li>
+            The itinerary remains flexible and may be adjusted
+            according to your comfort and convenience.
+          </li>
 
-        <br><br>
+          <li>
+            Your preferences regarding food, places and timings
+            will be given due consideration.
+          </li>
 
-        <strong>
-          The choice of arrival point is entirely yours.
-        </strong>
+          <li>
+            There will be no pressure regarding the schedule
+            or duration of the meeting.
+          </li>
 
-        Just let me know which would be
-        more convenient for you.
+          <li>
+            Any change in plans will be made with mutual
+            understanding and convenience.
+          </li>
+
+          <li>
+            Any complaints, concerns or special requests may
+            be communicated directly to
+            <strong>Vivek Singh Tanwar</strong>,
+            who will personally listen to them and take
+            responsibility for addressing them.
+          </li>
+
+        </ul>
 
       </div>
 
 
       <!-- CLOSING -->
 
-      <p>
+      <div class="reveal">
 
-        Your attendance is, of course,
-        entirely your choice.
+        <p>
 
-        But I must admit,
+          Your attendance is, of course,
+          entirely your choice.
 
-        <strong>
-          the invitation would feel incomplete without you.
-        </strong>
+          But I must admit,
 
-      </p>
+          <strong>
+            the invitation would feel incomplete without you.
+          </strong>
+
+        </p>
+
+      </div>
 
 
-      <div class="final">
+      <div class="final reveal">
 
         So, whenever you are ready,
 
@@ -822,7 +1012,7 @@ quietly, comfortably, and without any expectations.
 
       <!-- SIGNATURE -->
 
-      <div class="signature">
+      <div class="signature reveal">
 
         Looking forward to your gracious presence.
 
@@ -837,13 +1027,13 @@ quietly, comfortably, and without any expectations.
         <strong>
           Vivek Singh Tanwar
           <br>
-               (Vee)
+          (Vee)
         </strong>
 
       </div>
 
 
-      <div class="ornament" style="margin-top:30px;">
+      <div class="ornament reveal" style="margin-top:30px;">
         ✦ 🌹 ✦
       </div>
 
@@ -856,6 +1046,10 @@ quietly, comfortably, and without any expectations.
 
 <script>
 
+/* =========================
+   ENVELOPE OPENING
+========================= */
+
 const envelope =
   document.getElementById("envelope");
 
@@ -865,10 +1059,19 @@ const cover =
 const invitation =
   document.getElementById("invitation");
 
+const revealItems =
+  document.querySelectorAll(".reveal");
+
 
 envelope.addEventListener("click", function() {
 
+  /* Seal disappears and flap opens */
   envelope.classList.add("open");
+
+  /*
+    Give the flap time to open.
+    Then bring the invitation forward.
+  */
 
   setTimeout(function() {
 
@@ -876,9 +1079,76 @@ envelope.addEventListener("click", function() {
 
     invitation.classList.add("show");
 
-  }, 850);
+  }, 900);
+
+
+  /*
+    Reveal card contents one by one.
+  */
+
+  revealItems.forEach(function(item, index) {
+
+    setTimeout(function() {
+
+      item.classList.add("visible");
+
+    }, 1750 + (index * 180));
+
+  });
+
+
+  /*
+    Very subtle rose petals.
+  */
+
+  setTimeout(function() {
+
+    createPetals();
+
+  }, 1300);
 
 });
+
+
+/* =========================
+   ROSE PETALS
+========================= */
+
+function createPetals() {
+
+  for (let i = 0; i < 12; i++) {
+
+    setTimeout(function() {
+
+      const petal =
+        document.createElement("div");
+
+      petal.className = "petal";
+
+      petal.innerHTML = "🌹";
+
+      petal.style.left =
+        Math.random() * 100 + "vw";
+
+      petal.style.fontSize =
+        (10 + Math.random() * 8) + "px";
+
+      petal.style.animationDuration =
+        (7 + Math.random() * 5) + "s";
+
+      document.body.appendChild(petal);
+
+      setTimeout(function() {
+
+        petal.remove();
+
+      }, 13000);
+
+    }, i * 450);
+
+  }
+
+}
 
 </script>
 
